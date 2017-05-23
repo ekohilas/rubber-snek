@@ -5,8 +5,8 @@ numbers         = {k: v for v, k in enumerate("1234567890", start=30)}
 numbers_shift   = {k: v for v, k in enumerate("!@#$%^&*()", start=30)}
 symbols_1       = {k: v for v, k in enumerate(" -=[]\\", start=44)}
 symbols_1_shift = {k: v for v, k in enumerate(" _+{}|", start=44)}
-symbols_2       = {k: v for v, k in enumerate(";'`,./", start=47)}
-symbols_2_shift = {k: v for v, k in enumerate(':"~<>?', start=47)}
+symbols_2       = {k: v for v, k in enumerate(";'`,./", start=51)}
+symbols_2_shift = {k: v for v, k in enumerate(':"~<>?', start=51)}
 
 control = {
         "ENTER": 0x28,

@@ -2,6 +2,10 @@ import pyb
 from keys import KEYS, KEYS_SHIFT, MODS
 KEYBOARD = pyb.USB_HID()
 KEY_UP = bytearray(8)
+TERMINAL = bytearray(8)
+TERMINAL[0], TERMINAL[2] = MODS["LCTRL"] + MODS["LALT"], KEYS["t"]
+CHANGE_WINDOW = bytearray(8)
+CHANGE_WINDOW[0], CHANGE_WINDOW[2] = MODS["LALT"], KEYS["TAB"]
 
 def map_char(char):
     array = bytearray(8)
@@ -14,11 +18,14 @@ def map_char(char):
 
     return array
 
-def send_char(char):
-    KEYBOARD.send(map_char(char))
+def send_array(array):
+    KEYBOARD.send(array)
     pyb.delay(8)
     KEYBOARD.send(KEY_UP)
     pyb.delay(8)
+
+def send_char(char):
+    send_array(map_char(char))
 
 def send_string(string):
 
@@ -48,4 +55,7 @@ def send_string(string):
 if __name__ == "__main__":
     while True:
         if pyb.Switch()():
-            send_string("hello world")
+            send_array(TERMINAL)
+            #send_array(CHANGE_WINDOW)
+            pyb.delay(500)
+            send_string("echo 'hello world!'\\ENTER\\")
