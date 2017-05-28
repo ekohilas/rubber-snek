@@ -104,8 +104,5 @@ def forkbomb():
 if __name__ == "__main__":
     while True:
         if pyb.Switch()():
-            #send_array(LINUX_TERMINAL)
-            #send_array(CHANGE_WINDOW)
-            #pyb.delay(1000)
             rickroll()
 
