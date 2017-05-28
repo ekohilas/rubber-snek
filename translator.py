@@ -52,31 +52,10 @@ def send_string(string):
         else:
             char = ""
 
-TOGGLE = False
-
-def toggle():
-    global TOGGLE
-    TOGGLE = not TOGGLE
-
 if __name__ == "__main__":
-    accel = pyb.Accel()
-    mouse = pyb.USB_HID()
-
-
     while True:
-        pyb.Switch().callback(toggle)
-
-        if TOGGLE:
-            print("KEYBOARD")
-            pyb.usb_mode('CDC+HID', hid=pyb.hid_keyboard)
+        if pyb.Switch()():
             send_array(TERMINAL)
             #send_array(CHANGE_WINDOW)
             pyb.delay(500)
-            send_string(r"echo 'hello world!'\ENTER\\")
-            TOGGLE = False
-        else:
-            print("MOUSE")
-            pyb.usb_mode('CDC+HID')
-            mouse.send((0, accel.x(), -accel.y(), 0))
-            pyb.delay(10)
-        pyb.delay(100)
+            send_string("echo 'hello world!'\\ENTER\\")
