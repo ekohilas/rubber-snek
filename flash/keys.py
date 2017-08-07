@@ -1,12 +1,18 @@
 #from pprint import pprint as print
-letters         = {k: v for v, k in enumerate("abcdefghijklmnopqrstuvwxyz", start=4)}
-letters_shift   = {k: v for v, k in enumerate("ABCDEFGHIJKLMNOPQRSTUVWXYZ", start=4)}
-numbers         = {k: v for v, k in enumerate("1234567890", start=30)}
-numbers_shift   = {k: v for v, k in enumerate("!@#$%^&*()", start=30)}
-symbols_1       = {k: v for v, k in enumerate(" -=[]\\", start=44)}
-symbols_1_shift = {k: v for v, k in enumerate(" _+{}|", start=44)}
-symbols_2       = {k: v for v, k in enumerate(";'`,./", start=51)}
-symbols_2_shift = {k: v for v, k in enumerate(':"~<>?', start=51)}
+
+# helper function for making enumerated key dictionaries
+def make_dict(keys, start):
+    return {key: value for value, key in enumerate(keys, start=start)}
+
+# character dictionaries based off the standard
+letters         = make_dict("abcdefghijklmnopqrstuvwxyz", 4)
+letters_shift   = make_dict("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 4)
+numbers         = make_dict("1234567890", 30)
+numbers_shift   = make_dict("!@#$%^&*()", 30)
+symbols_1       = make_dict(" -=[]\\", 44)
+symbols_1_shift = make_dict(" _+{|", 44)
+symbols_2       = make_dict(";'`,./", 51)
+symbols_2_shift = make_dict(':"~<>?', 51)
 
 control = {
         "ENTER"     : 0x28,
